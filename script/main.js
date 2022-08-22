@@ -44,7 +44,7 @@ calculateTotalBtn.addEventListener("click", (event) => {
     } else if (managerInput.value < 0 || coachInput.value < 0) {
         alert("Enter positive amount...");
     } else {
-        let perPlayerExpense = +playerInput.value;
+        let perPlayerExpense = + playerInput.value;
         let playerExpense =
             selectedPlayerCount > 5
                 ? 5 * perPlayerExpense
