@@ -1,40 +1,38 @@
-console.log("Bismillah...");
+console.log('start js')
 
 const playerNames = document.querySelectorAll(".player-name");
 const playerInput = document.getElementById("player");
-const managerInput = document.getElementById("manager");
-const coachInput = document.getElementById("coach");
-const calculateBtn = document.getElementById("calculate");
-const calculateTotalBtn = document.getElementById("calculate-total");
-const playerExpense = document.getElementById("player-expense");
-const totalExpense = document.getElementById("total-expense");
-const playerContainer = document.getElementById("players");
-const addCustomBtn = document.getElementById("custom-add");
+const managerInput = document.getElementById('manager');
+const coachInput = document.getElementById('coach');
+const calculateBtn = document.getElementById('calculate');
+const calculateTotalBtn = document.getElementById('calculate-total');
+const playerExpense = document.getElementById('player-expense');
+const totalExpense = document.getElementById('total-expense');
+const playerContainer = document.getElementById('players');
+const selectedPlayerList = document.getElementById('selected-players');
 
-const selectedPlayerList = document.getElementById("selected-players");
-const imageLink = document.querySelector(".image-link");
-const playerName = document.querySelector(".player-name-add");
 
 let selectedPlayerCount = 0;
 
-calculateBtn.addEventListener("click", (event) => {
+calculateBtn.addEventListener('click', (event) => {
     if (selectedPlayerCount === 0) {
-        alert("Select at least one player...");
+        alert("Select at least one player...")
     } else if (playerInput.value == "") {
         alert("Enter Player Expense...");
     } else if (playerInput.value < 0) {
         alert("Enter positive amount...");
     } else {
-        const perPlayerExpense = +playerInput.value;
-        let expense =
-            selectedPlayerCount > 5
-                ? 5 * perPlayerExpense
-                : selectedPlayerCount * perPlayerExpense;
-        playerExpense.innerText = `$${expense}`;
-    }
-});
+        perPlayerExpense = +playerInput.value;
 
-calculateTotalBtn.addEventListener("click", (event) => {
+        let expense = selectedPlayerCount > 5
+            ? 5 * perPlayerExpense
+            : selectedPlayerCount * perPlayerExpense;
+        playerExpense.innerText = `$${expense}`;
+
+    }
+})
+
+calculateTotalBtn.addEventListener('click', (event) => {
     if (selectedPlayerCount === 0) {
         alert("Select at least one player...");
     } else if (playerInput.value == "") {
@@ -43,15 +41,15 @@ calculateTotalBtn.addEventListener("click", (event) => {
         alert("Enter manager's & coach's salary...");
     } else if (managerInput.value < 0 || coachInput.value < 0) {
         alert("Enter positive amount...");
-    } else {
-        let perPlayerExpense = + playerInput.value;
+    }
+    else {
+        let perPlayerExpense = +playerInput.value;
         let playerExpense =
             selectedPlayerCount > 5
                 ? 5 * perPlayerExpense
                 : selectedPlayerCount * perPlayerExpense;
         let coachExpense = +coachInput.value;
         let managerExpense = +managerInput.value;
-
         let totalExpenses = playerExpense + managerExpense + coachExpense;
         totalExpense.innerText = `$${totalExpenses}`;
     }
@@ -69,41 +67,6 @@ function getSelectedPlayer(event) {
     return player;
 }
 
-addCustomBtn.addEventListener("click", (e) => {
-    if (imageLink.value === "" || playerName.value === "") {
-        alert("Please provide image link and card title...");
-    } else {
-        const divElement = document.createElement("div");
-        // cardContainer.appendChild(element);
-        divElement.innerHTML = `
-    <div class="player rounded">
-    <img src="${imageLink.value}" alt="" class="rounded-t" />
-    <div
-      id="text"
-      class="text-white bg-gray-900 p-2 text-center rounded-b"
-    >
-      <h2
-        class="text-lg sm:text-2xl font-semibold tracking-wide player-name text-orange-300"
-      >
-          ${playerName.value}
-      </h2>
-      <p class="text-base font-medium mb-4">
-        36 Goals &nbsp; &middot; &nbsp; 120 Assists
-      </p>
-      <button class="w-full mb-2 select-btn btn-primary p-1 onclick='addPlayer()'">
-        Select
-      </button>
-    </div>
-  </div>
-    `;
-        selectBtns = document.querySelectorAll(".select-btn");
-        playerContainer.appendChild(divElement);
-        imageLink.value = "";
-        playerName.value = "";
-        alert("Card Added");
-    }
-});
-
 playerContainer.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
         selectedPlayerCount++;
@@ -119,3 +82,4 @@ playerContainer.addEventListener("click", (event) => {
     }
     event.stopPropagation();
 });
+
